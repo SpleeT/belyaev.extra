@@ -1,0 +1,23 @@
+#extraPostTarifSelector.table {
+  display: table;
+  width:100% !important;
+  text-align: center;
+   border-collapse: collapse;
+}
+
+#extraPostTarifSelector.table tr {
+  height: 60px!important;
+}
+#extraPostTarifSelector.table thead {
+  background: #fbfbfa;
+}
+
+#extraPostTarifSelector.table tr:hover {
+  background: #fbfbfa;
+  cursor: pointer;
+}
+
+#extraPostTarifSelector.table tr td {
+  padding: 3px;
+  border-bottom: 1px solid #bfcacf7a;
+}
