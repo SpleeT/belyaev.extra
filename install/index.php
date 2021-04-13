@@ -165,8 +165,8 @@ Class belyaev_extra extends CModule
         "FIELD_NAME"      => CrmAction::WEIGHT_USERFIELD,
         "USER_TYPE_ID"    => "double",
         "EDIT_FORM_LABEL" => [
-          "ru"  => Loc::getMessage('BELYAEV_EXTRA.WEIGHT_NAME_RU'),
-          "en"  => Loc::getMessage('BELYAEV_EXTRA.WEIGHT_NAME_EN')
+          "ru"  => Loc::getMessage('BELYAEV_EXTRA.USERFIELD_WEIGHT_RU'),
+          "en"  => Loc::getMessage('BELYAEV_EXTRA.USERFIELD_WEIGHT_RU')
         ],
         'LIST_COLUMN_LABEL' => array(
           'ru'    => Loc::getMessage('BELYAEV_EXTRA.WEIGHT_NAME_RU'),
