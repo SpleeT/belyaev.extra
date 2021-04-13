@@ -21,7 +21,6 @@ BX.ready(function () {
     if (tarifField === null) {
       return;
     }
-    console.log(tarifField);
     isInit = true;
     entity_id = eventSection._settings.editor._entityId;
     entity_type = eventSection._settings.editor._entityTypeName;
@@ -236,6 +235,7 @@ BX.ready(function () {
       },
       onfailure: function(e){
         console.log(e);
+        BX.closeWait();
       }
     });
   }
@@ -255,7 +255,6 @@ BX.ready(function () {
     }
     checkedNode = node;
     checkedData = node.dataset;
-    console.log(checkedData);
   }
 
   function fillTarifData() {
