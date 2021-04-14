@@ -7,6 +7,7 @@ BX.ready(function () {
   var popup = null;
   var table = null;
   var thead = null;
+  var currentTarifNode = null;
   var entity_type = null;
   var entity_id = null;
   var checkedNode = null;
@@ -281,6 +282,12 @@ BX.ready(function () {
     // Закрываем popup
     popup.destroy();
     popup = null;
-    tarifField.refreshLayout();
+    if (currentTarifNode == null) {
+      currentTarifNode = BX.create('pre', {html: "Новое значение:<b>" + checkedData.tarif + "</b>"});
+      var iframe = tarifField.getWrapper().getElementsByTagName('iframe')[0];
+      BX.insertBefore(currentTarifNode, iframe);
+    } else {
+      currentTarifNode.innerHTML = "Новое значение:<b>" + checkedData.tarif+ "</b>";
+    }
   }
 })
