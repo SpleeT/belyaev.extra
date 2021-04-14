@@ -23,6 +23,7 @@ BX.ready(function () {
       return;
     }
     isInit = true;
+    currentTarifNode = null;
     entity_id = eventSection._settings.editor._entityId;
     entity_type = eventSection._settings.editor._entityTypeName;
     addButton();
