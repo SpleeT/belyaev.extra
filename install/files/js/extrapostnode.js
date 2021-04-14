@@ -47,7 +47,7 @@ BX.ready(function () {
   function extraPopup (event) {
     popup = BX.PopupWindowManager.create("popup-message", event.target, {
       min_height: 50,
-      width: 1100,
+      width: 800,
       height: 500,
       //zIndex: -100,
       titleBar: "Выбор тарифа для ExtraPost",
@@ -267,7 +267,7 @@ BX.ready(function () {
     }
     var valFieldTarif = checkedData.extra;
     if (typeof(checkedData.ops) !== "undefined") {
-      valFieldTarif = checkedData.extra + ":" + checkedData.ops;
+      //valFieldTarif = checkedData.extra + ":" + checkedData.ops; /* В связи с тем, что не доработано на стороне экстры*/
     }
     // Отправляем изменения
     BX.ajax.post('/ajax/belyaev.extra/select_extra_tarif.php', {
