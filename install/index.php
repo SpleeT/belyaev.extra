@@ -172,7 +172,6 @@ Class belyaev_extra extends CModule
           'ru'    => Loc::getMessage('BELYAEV_EXTRA.WEIGHT_NAME_RU'),
           'en'    => Loc::getMessage('BELYAEV_EXTRA.WEIGHT_NAME_EN'),
         ),
-    /* Подпись фильтра в списке */
         'LIST_FILTER_LABEL' => array(
           'ru'    => Loc::getMessage('BELYAEV_EXTRA.WEIGHT_NAME_RU'),
           'en'    => Loc::getMessage('BELYAEV_EXTRA.WEIGHT_NAME_EN'),
@@ -186,7 +185,15 @@ Class belyaev_extra extends CModule
         "EDIT_FORM_LABEL" => [
           "ru"  => Loc::getMessage('BELYAEV_EXTRA.USERFIELD_PREPAYMENT_SUM_RU'),
           "en"  => Loc::getMessage('BELYAEV_EXTRA.USERFIELD_PREPAYMENT_SUM_EN')
-        ]
+        ],
+        "LIST_COLUMN_LABEL" => array(
+          "ru"    => Loc::getMessage('BELYAEV_EXTRA.USERFIELD_PREPAYMENT_SUM_RU'),
+          "en"    => Loc::getMessage('BELYAEV_EXTRA.USERFIELD_PREPAYMENT_SUM_EN'),
+        ),
+        "LIST_FILTER_LABEL" => array(
+          "ru"    => Loc::getMessage('BELYAEV_EXTRA.USERFIELD_PREPAYMENT_SUM_RU'),
+          "en"    => Loc::getMessage('BELYAEV_EXTRA.USERFIELD_PREPAYMENT_SUM_EN'),
+          ),
       ]);
       // Пользовательское поле Адрес ПВЗ
       $userFields->Add([
@@ -196,7 +203,15 @@ Class belyaev_extra extends CModule
         "EDIT_FORM_LABEL" => [
           "ru"  => Loc::getMessage('BELYAEV_EXTRA.USERFIELD_ADDRESS_OPS_RU'),
           "en"  => Loc::getMessage('BELYAEV_EXTRA.USERFIELD_ADDRESS_OPS_EN')
-        ]
+        ],
+        "LIST_COLUMN_LABEL" => array(
+          "ru"    => Loc::getMessage('BELYAEV_EXTRA.USERFIELD_ADDRESS_OPS_RU'),
+          "en"    => Loc::getMessage('BELYAEV_EXTRA.USERFIELD_ADDRESS_OPS_EN'),
+        ),
+        "LIST_FILTER_LABEL" => array(
+          "ru"    => Loc::getMessage('BELYAEV_EXTRA.USERFIELD_ADDRESS_OPS_RU'),
+          "en"    => Loc::getMessage('BELYAEV_EXTRA.USERFIELD_ADDRESS_OPS_EN'),
+          ),
       ]);
       // Пользовательское поле Срок доставки
       $userFields->Add([
@@ -206,7 +221,15 @@ Class belyaev_extra extends CModule
         "EDIT_FORM_LABEL" => [
           "ru"  => Loc::getMessage('BELYAEV_EXTRA.USERFIELD_PERIOD_DELIVERY_RU'),
           "en"  => Loc::getMessage('BELYAEV_EXTRA.USERFIELD_PERIOD_DELIVERY_EN')
-        ]
+        ],
+        "LIST_COLUMN_LABEL" => array(
+          "ru"    => Loc::getMessage('BELYAEV_EXTRA.USERFIELD_PERIOD_DELIVERY_RU'),
+          "en"    => Loc::getMessage('BELYAEV_EXTRA.USERFIELD_PERIOD_DELIVERY_EN'),
+        ),
+        "LIST_FILTER_LABEL" => array(
+          "ru"    => Loc::getMessage('BELYAEV_EXTRA.USERFIELD_PERIOD_DELIVERY_RU'),
+          "en"    => Loc::getMessage('BELYAEV_EXTRA.USERFIELD_PERIOD_DELIVERY_EN'),
+          ),
       ]);
       // Пользовательское поле Себестоимость доставки
       $userFields->Add([
@@ -216,7 +239,15 @@ Class belyaev_extra extends CModule
         "EDIT_FORM_LABEL" => [
           "ru"  => Loc::getMessage('BELYAEV_EXTRA.USERFIELD_NETCOST_DELIVERY_RU'),
           "en"  => Loc::getMessage('BELYAEV_EXTRA.USERFIELD_NETCOST_DELIVERY_EN')
-        ]
+        ],
+        "LIST_COLUMN_LABEL" => array(
+          "ru"    => Loc::getMessage('BELYAEV_EXTRA.USERFIELD_NETCOST_DELIVERY_RU'),
+          "en"    => Loc::getMessage('BELYAEV_EXTRA.USERFIELD_NETCOST_DELIVERY_EN'),
+        ),
+        "LIST_FILTER_LABEL" => array(
+          "ru"    => Loc::getMessage('BELYAEV_EXTRA.USERFIELD_NETCOST_DELIVERY_RU'),
+          "en"    => Loc::getMessage('BELYAEV_EXTRA.USERFIELD_NETCOST_DELIVERY_EN'),
+          ),
       ]);
     } catch (\Throwable $e) {
     }
