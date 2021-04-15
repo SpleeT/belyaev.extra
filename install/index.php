@@ -249,6 +249,60 @@ Class belyaev_extra extends CModule
           "en"    => Loc::getMessage('BELYAEV_EXTRA.USERFIELD_NETCOST_DELIVERY_EN'),
           ),
       ]);
+      $userFields->Add([
+        "ENTITY_ID"       => $entityID,
+        "FIELD_NAME"      => CrmAction::CARRIER_ID_USERFIELD,
+        "USER_TYPE_ID"    => "string",
+        "EDIT_FORM_LABEL" => [
+          "ru"  => Loc::getMessage('BELYAEV_EXTRA.USERFIELD_ID_CARRIER_RU'),
+          "en"  => Loc::getMessage('BELYAEV_EXTRA.USERFIELD_ID_CARRIER_EN')
+        ],
+        "LIST_COLUMN_LABEL" => array(
+          "ru"    => Loc::getMessage('BELYAEV_EXTRA.USERFIELD_ID_CARRIER_RU'),
+          "en"    => Loc::getMessage('BELYAEV_EXTRA.USERFIELD_ID_CARRIER_EN'),
+        ),
+        "LIST_FILTER_LABEL" => array(
+          "ru"    => Loc::getMessage('BELYAEV_EXTRA.USERFIELD_ID_CARRIER_RU'),
+          "en"    => Loc::getMessage('BELYAEV_EXTRA.USERFIELD_ID_CARRIER_EN'),
+          ),
+      ]);
+      // Only for CRM_DEAL
+      if ($entityID == "CRM_DEAL") {
+        $userFields->Add([
+          "ENTITY_ID"       => $entityID,
+          "FIELD_NAME"      => CrmAction::COST_DELIVERY_USERFIELD,
+          "USER_TYPE_ID"    => "double",
+          "EDIT_FORM_LABEL" => [
+            "ru"  => Loc::getMessage('BELYAEV_EXTRA.USERFIELD_NETCOST_DELIVERY_RU'),
+            "en"  => Loc::getMessage('BELYAEV_EXTRA.USERFIELD_NETCOST_DELIVERY_EN')
+          ],
+          "LIST_COLUMN_LABEL" => array(
+            "ru"    => Loc::getMessage('BELYAEV_EXTRA.USERFIELD_NETCOST_DELIVERY_RU'),
+            "en"    => Loc::getMessage('BELYAEV_EXTRA.USERFIELD_NETCOST_DELIVERY_EN'),
+          ),
+          "LIST_FILTER_LABEL" => array(
+            "ru"    => Loc::getMessage('BELYAEV_EXTRA.USERFIELD_NETCOST_DELIVERY_RU'),
+            "en"    => Loc::getMessage('BELYAEV_EXTRA.USERFIELD_NETCOST_DELIVERY_EN'),
+            ),
+        ]);
+        $userFields->Add([
+          "ENTITY_ID"       => $entityID,
+          "FIELD_NAME"      => CrmAction::DELIVERY_STATUS_USERFIELD,
+          "USER_TYPE_ID"    => "string",
+          "EDIT_FORM_LABEL" => [
+            "ru"  => Loc::getMessage('BELYAEV_EXTRA.USERFIELD_STATUS_DELIVERY_RU'),
+            "en"  => Loc::getMessage('BELYAEV_EXTRA.USERFIELD_STATUS_DELIVERY_EN')
+          ],
+          "LIST_COLUMN_LABEL" => array(
+            "ru"    => Loc::getMessage('BELYAEV_EXTRA.USERFIELD_STATUS_DELIVERY_RU'),
+            "en"    => Loc::getMessage('BELYAEV_EXTRA.USERFIELD_STATUS_DELIVERY_EN'),
+          ),
+          "LIST_FILTER_LABEL" => array(
+            "ru"    => Loc::getMessage('BELYAEV_EXTRA.USERFIELD_STATUS_DELIVERY_RU'),
+            "en"    => Loc::getMessage('BELYAEV_EXTRA.USERFIELD_STATUS_DELIVERY_EN'),
+            ),
+        ]);
+      }
     } catch (\Throwable $e) {
     }
   }

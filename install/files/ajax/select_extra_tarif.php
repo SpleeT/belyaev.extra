@@ -49,6 +49,7 @@
           $dataFields[CrmAction::ADDRESS_OPS_USERFIELD] = ($extraData['address']) ? $extraData['address'] : false;
           $dataFields[CrmAction::NETCOST_DELIVERY_USERFIELD] = ($extraData['cost']) ? $extraData['cost'] : false;
           $dataFields[CrmAction::PERIOD_DELIVERY_USERFIELD] = ($extraData['term']) ? $extraData['term'] : false;
+          $dataFields[CrmAction::CARRIER_ID_USERFIELD] = ($extraData['ops']) ? $extraData['ops'] : false;
         }
         $result = CrmAction::setEntityData($entityType, $entityID, $dataFields);
         echo Json::encode($dataFields, JSON_UNESCAPED_UNICODE);
