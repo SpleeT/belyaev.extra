@@ -307,16 +307,16 @@ Class belyaev_extra extends CModule
           "FIELD_NAME"      => CrmAction::COST_DELIVERY_USERFIELD,
           "USER_TYPE_ID"    => "double",
           "EDIT_FORM_LABEL" => [
-            "ru"  => Loc::getMessage('BELYAEV_EXTRA.USERFIELD_NETCOST_DELIVERY_RU'),
-            "en"  => Loc::getMessage('BELYAEV_EXTRA.USERFIELD_NETCOST_DELIVERY_EN')
+            "ru"  => Loc::getMessage('BELYAEV_EXTRA.USERFIELD_COST_DELIVERY_RU'),
+            "en"  => Loc::getMessage('BELYAEV_EXTRA.USERFIELD_COST_DELIVERY_EN')
           ],
           "LIST_COLUMN_LABEL" => array(
-            "ru"    => Loc::getMessage('BELYAEV_EXTRA.USERFIELD_NETCOST_DELIVERY_RU'),
-            "en"    => Loc::getMessage('BELYAEV_EXTRA.USERFIELD_NETCOST_DELIVERY_EN'),
+            "ru"    => Loc::getMessage('BELYAEV_EXTRA.USERFIELD_COST_DELIVERY_RU'),
+            "en"    => Loc::getMessage('BELYAEV_EXTRA.USERFIELD_COST_DELIVERY_EN'),
           ),
           "LIST_FILTER_LABEL" => array(
-            "ru"    => Loc::getMessage('BELYAEV_EXTRA.USERFIELD_NETCOST_DELIVERY_RU'),
-            "en"    => Loc::getMessage('BELYAEV_EXTRA.USERFIELD_NETCOST_DELIVERY_EN'),
+            "ru"    => Loc::getMessage('BELYAEV_EXTRA.USERFIELD_COST_DELIVERY_RU'),
+            "en"    => Loc::getMessage('BELYAEV_EXTRA.USERFIELD_COST_DELIVERY_EN'),
             ),
         ]);
         $userFields->Add([
