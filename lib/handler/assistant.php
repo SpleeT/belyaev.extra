@@ -172,7 +172,7 @@ class Assistant
     if(!$keyField) return $result;
     $enumVal = self::checkValueInEnumFields($needValueName, array($keyField));
     if(!$enumVal) {
-      $addVal = self::addValueInEnumField($needValueName, $getFields);
+      $addVal = self::addValueInEnumField($needValueName, array($keyField));
       $enumVal = self::checkValueInEnumFields($needValueName, array($keyField));
     }
     $result = $enumVal;
