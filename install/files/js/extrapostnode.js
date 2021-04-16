@@ -47,7 +47,7 @@ BX.ready(function () {
   function extraPopup (event) {
     popup = BX.PopupWindowManager.create("popup-message", event.target, {
       min_height: 50,
-      width: 800,
+      width: 850,
       height: 500,
       //zIndex: -100,
       titleBar: "Выбор тарифа для ExtraPost",
@@ -136,6 +136,8 @@ BX.ready(function () {
               'data-term': value.delivery_days,
               'data-cost': value.rateTotal,
               'data-tarif': value.title,
+              'data-carriertitle': value.carrier_title,
+              'data-servicetitle': value.service_title
             },
             events: {
               click: function (e) {
@@ -149,16 +151,23 @@ BX.ready(function () {
             text: value.title
           }), tr);
           // Примечание
-          var prim = BX.create('td');
+          var prim = BX.create('td', { style: {'text-align': 'left'}});
           BX.append(prim, tr);
+          BX.append(BX.create('img', {
+            attrs: {
+              src: `https://my.extrapost.ru/img/logos/${value.carrier}_unsigned.svg`,
+              width: "32px"
+            }
+          }), prim);
           BX.append(BX.create('a', {
             attrs : {
               'href': `https://yandex.ru/maps/?ll=${opsVal.geometry.coordinates[1]},${opsVal.geometry.coordinates[0]}&pt=${opsVal.geometry.coordinates[1]},${opsVal.geometry.coordinates[0]}&z=16`,
               'title': "Смотреть на Яндекс.Картах",
               'target': "_blank"
             },
-            html: `<img valign="middle" src="https://static-maps.yandex.ru/1.x/?ll=${opsVal.geometry.coordinates[1]},${opsVal.geometry.coordinates[0]}&amp;z=15&amp;l=map&amp;size=350,200&amp;pt=${opsVal.geometry.coordinates[1]},${opsVal.geometry.coordinates[0]},pm2rdm">`
+            html: `<img valign="middle" src="https://static-maps.yandex.ru/1.x/?ll=${opsVal.geometry.coordinates[1]},${opsVal.geometry.coordinates[0]}&amp;z=15&amp;l=map&amp;size=300,175&amp;pt=${opsVal.geometry.coordinates[1]},${opsVal.geometry.coordinates[0]},pm2rdm">`
           }), prim)
+
           // Срок доставки
           BX.append(BX.create('td', {
             text: value.delivery_days + ' дн'
@@ -180,6 +189,8 @@ BX.ready(function () {
             'data-term': value.delivery_days,
             'data-cost': value.rateTotal,
             'data-tarif': value.title,
+            'data-carriertitle': value.carrier_title,
+            'data-servicetitle': value.service_title
           },
           events: {
             click: function (e) {
@@ -193,8 +204,14 @@ BX.ready(function () {
           text: value.title
         }), tr);
         // Примечание
-        BX.append(BX.create('td', {
-        }), tr);
+        prim = BX.create('td', { style: {'text-align': 'left'}});
+        BX.append(prim, tr);
+        BX.append(BX.create('img', {
+          attrs: {
+            src: `https://my.extrapost.ru/img/logos/${value.carrier}_unsigned.svg`,
+            width: "32px"
+          }
+        }), prim);
         // Срок доставки
         BX.append(BX.create('td', {
           text: value.delivery_days + ' дн'
@@ -267,6 +284,7 @@ BX.ready(function () {
     }
     var valFieldTarif = checkedData.extra;
     if (typeof(checkedData.ops) !== "undefined") {
+
       //valFieldTarif = checkedData.extra + ":" + checkedData.ops; /* В связи с тем, что не доработано на стороне экстры*/
     }
     // Отправляем изменения
@@ -283,8 +301,9 @@ BX.ready(function () {
     // Закрываем popup
     popup.destroy();
     popup = null;
+    var currentOps = (typeof(checkedData.address) != "undefined") ? "<br>до ПВЗ: " + checkedData.address : "";
     if (currentTarifNode == null) {
-      currentTarifNode = BX.create('pre', {html: "Новое значение:<b>" + checkedData.tarif + "</b>"});
+      currentTarifNode = BX.create('pre', {html: "Новое значение:<b>" + checkedData.tarif + currentOps +"</b>"});
       var iframe = tarifField.getWrapper().getElementsByTagName('iframe')[0];
       BX.insertBefore(currentTarifNode, iframe);
     } else {

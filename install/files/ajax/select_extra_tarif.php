@@ -50,6 +50,8 @@
           $dataFields[CrmAction::NETCOST_DELIVERY_USERFIELD] = ($extraData['cost']) ? $extraData['cost'] : false;
           $dataFields[CrmAction::PERIOD_DELIVERY_USERFIELD] = ($extraData['term']) ? $extraData['term'] : false;
           $dataFields[CrmAction::CARRIER_ID_USERFIELD] = ($extraData['ops']) ? $extraData['ops'] : false;
+          $dataFields[CrmAction::CARRIER_TITLE_USERFIELD] = ($extraData['carriertitle']) ? Assistant::complexActionsUserFields($extraData['carriertitle'], CrmAction::CARRIER_TITLE_USERFIELD, "CRM_{$entityType}") : false;
+          $dataFields[CrmAction::SERVICE_TITLE_USERFIELD] = ($extraData['servicetitle']) ? Assistant::complexActionsUserFields($extraData['servicetitle'], CrmAction::SERVICE_TITLE_USERFIELD, "CRM_{$entityType}") : false;
         }
         $result = CrmAction::setEntityData($entityType, $entityID, $dataFields);
         echo Json::encode($dataFields, JSON_UNESCAPED_UNICODE);
@@ -63,12 +65,13 @@
           $prepSumField = $getData[CrmAction::PREPAYMENT_SUM_USERFIELD];
           $opportunity = $getData['OPPORTUNITY'];
           if (empty($prepSumField) || $opportunity > $prepSumField) $prepayment = false;
+          $imposedPay = round($opportunity - $prepSumField);
         }
         if (!empty(@$getData["CONTACT_ADDRESS"][1]['POSTAL_CODE'])) {
-          $result = Assistant::getExtrapostTarifs($getData["CONTACT_ADDRESS"][1]['POSTAL_CODE'], $getData[CrmAction::WEIGHT_USERFIELD], $prepayment);
+          $result = Assistant::getExtrapostTarifs($getData["CONTACT_ADDRESS"][1]['POSTAL_CODE'], $getData[CrmAction::WEIGHT_USERFIELD], $prepayment, $imposedPay);
           echo Json::encode($result, JSON_UNESCAPED_UNICODE);
         } elseif (!empty(@$getData["ADDRESS_POSTAL_CODE"])) {
-          $result = Assistant::getExtrapostTarifs($getData["ADDRESS_POSTAL_CODE"], $getData[CrmAction::WEIGHT_USERFIELD], $prepayment);
+          $result = Assistant::getExtrapostTarifs($getData["ADDRESS_POSTAL_CODE"], $getData[CrmAction::WEIGHT_USERFIELD], $prepayment, $imposedPay);
           echo Json::encode($result, JSON_UNESCAPED_UNICODE);
         } else {
           echo Json::encode(array('ERROR' => Loc::getMessage('ADDRESS_POSTAL_CODE')), JSON_UNESCAPED_UNICODE);

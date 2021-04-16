@@ -12,7 +12,7 @@ $MESS['BELYAEV_EXTRA.USERFIELD_PREPAYMENT_SUM_RU'] = 'Сумма предопл�
 $MESS['BELYAEV_EXTRA.USERFIELD_PREPAYMENT_SUM_EN'] = 'Prepayment summ';
 $MESS['BELYAEV_EXTRA.USERFIELD_ADDRESS_OPS_RU'] = 'Адрес ПВЗ';
 $MESS['BELYAEV_EXTRA.USERFIELD_ADDRESS_OPS_EN'] = 'Address Pickup Point';
-$MESS['BELYAEV_EXTRA.USERFIELD_PERIOD_DELIVERY_RU'] = 'Срок доставки';
+$MESS['BELYAEV_EXTRA.USERFIELD_PERIOD_DELIVERY_RU'] = 'Срок доставки (дней)';
 $MESS['BELYAEV_EXTRA.USERFIELD_PERIOD_DELIVERY_EN'] = 'Delivery period';
 $MESS['BELYAEV_EXTRA.USERFIELD_NETCOST_DELIVERY_RU'] = 'Себестоимость доставки';
 $MESS['BELYAEV_EXTRA.USERFIELD_NETCOST_DELIVERY_EN'] = 'Netcost delivery';
@@ -23,6 +23,8 @@ $MESS['BELYAEV_EXTRA.USERFIELD_ID_CARRIER_EN'] = 'Pickup Point ID';
 $MESS['BELYAEV_EXTRA.USERFIELD_STATUS_DELIVERY_RU'] = 'Статус доставки';
 $MESS['BELYAEV_EXTRA.USERFIELD_STATUS_DELIVERY_EN'] = 'Delivery status';
 
-$MESS['BELYAEV_EXTRA.USERFIELD_STATUS_DELIVERY_RU'] = 'Перевозчик';
-$MESS['BELYAEV_EXTRA.USERFIELD_STATUS_DELIVERY_EN'] = 'Тариф перевозчика';
+$MESS['BELYAEV_EXTRA.CARRIER_RU'] = 'Перевозчик';
+$MESS['BELYAEV_EXTRA.CARRIER_EN'] = 'Carrier';
+$MESS['BELYAEV_EXTRA.TARIF_CARRIER_RU'] = 'Тариф перевозчика';
+$MESS['BELYAEV_EXTRA.TARIF_CARRIER_EN'] = 'Tarif carrier';
 ?>

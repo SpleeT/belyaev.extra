@@ -25,6 +25,12 @@ $aTabs = array(
                 array('checkbox'),
             ),
             array(
+                'belyaev_extra_select_dynamic_carrier_enabled',
+                Loc::getMessage('BELYAEV_EXTRA_DYNAMIC_CARRIER'),
+                null,
+                array('checkbox'),
+            ),
+            array(
                 'belyaev_extra_select_prepayment_assist',
                 Loc::getMessage('BELYAEV_EXTRA_PREPAYMENT_ASSIST'),
                 null,

@@ -166,7 +166,7 @@ Class belyaev_extra extends CModule
         "USER_TYPE_ID"    => "double",
         "EDIT_FORM_LABEL" => [
           "ru"  => Loc::getMessage('BELYAEV_EXTRA.USERFIELD_WEIGHT_RU'),
-          "en"  => Loc::getMessage('BELYAEV_EXTRA.USERFIELD_WEIGHT_RU')
+          "en"  => Loc::getMessage('BELYAEV_EXTRA.USERFIELD_WEIGHT_EN')
         ],
         'LIST_COLUMN_LABEL' => array(
           'ru'    => Loc::getMessage('BELYAEV_EXTRA.WEIGHT_NAME_RU'),
@@ -264,6 +264,40 @@ Class belyaev_extra extends CModule
         "LIST_FILTER_LABEL" => array(
           "ru"    => Loc::getMessage('BELYAEV_EXTRA.USERFIELD_ID_CARRIER_RU'),
           "en"    => Loc::getMessage('BELYAEV_EXTRA.USERFIELD_ID_CARRIER_EN'),
+          ),
+      ]);
+      $userFields->Add([
+        "ENTITY_ID"       => $entityID,
+        "FIELD_NAME"      => CrmAction::CARRIER_TITLE_USERFIELD,
+        "USER_TYPE_ID"    => "enumeration",
+        "EDIT_FORM_LABEL" => [
+          "ru"  => Loc::getMessage('BELYAEV_EXTRA.CARRIER_RU'),
+          "en"  => Loc::getMessage('BELYAEV_EXTRA.CARRIER_EN')
+        ],
+        "LIST_COLUMN_LABEL" => array(
+          "ru"    => Loc::getMessage('BELYAEV_EXTRA.CARRIER_RU'),
+          "en"    => Loc::getMessage('BELYAEV_EXTRA.CARRIER_EN'),
+        ),
+        "LIST_FILTER_LABEL" => array(
+          "ru"    => Loc::getMessage('BELYAEV_EXTRA.CARRIER_RU'),
+          "en"    => Loc::getMessage('BELYAEV_EXTRA.CARRIER_EN'),
+          ),
+      ]);
+      $userFields->Add([
+        "ENTITY_ID"       => $entityID,
+        "FIELD_NAME"      => CrmAction::SERVICE_TITLE_USERFIELD,
+        "USER_TYPE_ID"    => "enumeration",
+        "EDIT_FORM_LABEL" => [
+          "ru"  => Loc::getMessage('BELYAEV_EXTRA.TARIF_CARRIER_RU'),
+          "en"  => Loc::getMessage('BELYAEV_EXTRA.TARIF_CARRIER_EN')
+        ],
+        "LIST_COLUMN_LABEL" => array(
+          "ru"    => Loc::getMessage('BELYAEV_EXTRA.TARIF_CARRIER_RU'),
+          "en"    => Loc::getMessage('BELYAEV_EXTRA.TARIF_CARRIER_EN'),
+        ),
+        "LIST_FILTER_LABEL" => array(
+          "ru"    => Loc::getMessage('BELYAEV_EXTRA.TARIF_CARRIER_RU'),
+          "en"    => Loc::getMessage('BELYAEV_EXTRA.TARIF_CARRIER_EN'),
           ),
       ]);
       // Only for CRM_DEAL

@@ -34,13 +34,15 @@ class Assistant
     }
   }
 
-  private static function addSelectButton() {
+  private static function addSelectButton()
+  {
     $asset = Asset::getInstance();
     $asset->addJs('/local/js/belyaev.extra/extrapostnode.js');
     $asset->addCss('/local/modules/belyaev.extra/src/css/extra_tarif.css', true);
   }
 
-  private static function detectCrmDetailPage() {
+  private static function detectCrmDetailPage()
+  {
     $curPage = $GLOBALS['APPLICATION']->GetCurPage();
     $result = false;
     foreach (self::CRM_DETAIL_PAGE as $accesPage) {
@@ -55,7 +57,8 @@ class Assistant
   * @param string $type  M ИЛИ K! Метры или километры
   * @return float расстояние
   */
-  private static function calcDistance(array $point1, array $point2, $type) {
+  private static function calcDistance(array $point1, array $point2, $type)
+  {
     $lt1 = $point1[0];
     $lt2 = $point2[0];
     $lg1 = $point1[1];
@@ -76,13 +79,115 @@ class Assistant
   }
 
   /**
+  * Статический метод для получения настроек полей по их названию
+  * @param string $fieldName название пользовательского поля UF_....
+  * @param $type тип пользовательского поля
+  * @param bool $onlyID возвращать все доступные поля или только ID
+  * @return возвращает массив или false в случае неудачи
+  */
+  public static function getUserFieldByName(string $fieldName, $type = false, $onlyID = false)
+  {
+    $result = [];
+    $arFilter = array(
+      "FIELD_NAME" => $fieldName,
+    );
+    if($type) $arFilter['USER_TYPE_ID'] = $type;
+    $query = \CUserTypeEntity::GetList(
+  		array(),
+      $arFilter
+  	);
+    while ($row = $query->Fetch()) {
+      if (!$onlyID) {
+        $result[] = $row;
+      } else {
+        $result[$row['ENTITY_ID']] = $row['ID'];
+      }
+    }
+    if(count($result) == 0) $result = false;
+    return $result;
+  }
+
+  /**
+  * Функция проверяет есть ли значение в одном из полей, если есть хотя бы в одном - возвращет true
+  */
+
+  public static function checkValueInEnumFields(string $needValueName, array $fieldsID)
+  {
+    $result = false;
+    $arrResult = array();
+  	foreach ($fieldsID as $id) {
+  		$query = \CUserFieldEnum::GetList(false, array("USER_FIELD_ID" => $id));
+  		while ($row = $query->Fetch()) {
+  			$arrResult[] = $row;
+  		}
+    }
+
+    if(empty($arrResult)) return $result;
+        print_r(file_put_contents('/home/bitrix/www/Belyaev/log.log', json_encode($arrResult)));
+    foreach ($arrResult as $value) {
+      if($value['VALUE'] == $needValueName) {
+        $result = $value['ID'];
+        break;
+      }
+    }
+    return $result;
+  }
+
+  /**
+  * Функция добавляет значение в список пользовательского поля
+  */
+  public static function addValueInEnumField(string $needValueName, array $fieldsID) {
+    foreach ($fieldsID as $id) {
+      $re = (new \CUserFieldEnum())->SetEnumValues($id, array(
+        "n{$needValueID}" => [
+          "VALUE" => $needValueName,
+          "DEF"   => "N"
+        ]
+      ));
+    }
+  }
+
+  /**
+  * Комлексное решение для динамического проставления тарифа и перевозчика, создано для реализации аналитики по доставкам
+  * Метод получает ID по названию поля, ищет все его значения, проверяет существует ли такое, если нет - добавляет
+  * Возвращает ID значения
+  */
+  public static function complexActionsUserFields(string $needValueName, string $fieldName, string $entity, $type = 'enumeration', $onlyID = true)
+  {
+    if (Option::get('belyaev.extra', 'belyaev_extra_select_dynamic_carrier_enabled') != 'Y') {
+      return false;
+    }
+    $result = false;
+    $keyField = false;
+    $getFields = self::getUserFieldByName($fieldName, $type, $onlyID);
+    if(!$getFields) return $result;
+    foreach ($getFields as $key => $id) {
+      if ($key != $entity) {
+        continue;
+      } else {
+        $keyField = $id;
+        break;
+      }
+    }
+    if(!$keyField) return $result;
+    $enumVal = self::checkValueInEnumFields($needValueName, array($keyField));
+    if(!$enumVal) {
+      $addVal = self::addValueInEnumField($needValueName, $getFields);
+      $enumVal = self::checkValueInEnumFields($needValueName, array($keyField));
+    }
+    $result = $enumVal;
+    return $result;
+  }
+
+
+  /**
   * Метод получения тарифов, логика их получения описана в нем. Исключена Частная почта и письмо
   * @param string $clientPostalCode Индекс клиента
   * @param float $entityWeight Общий вес товаров, по умолчанию 300
   * @param bool $prepayment Проверяет на доступность наложенного платежа в СДЭКе
   * @return array массив доступных и не исключенных в логике метода тарифов
   */
-  public static function getExtrapostTarifs($clientPostalCode, $entityWeight = 0, $prepayment = true)
+  public static function getExtrapostTarifs($clientPostalCode, $entityWeight = 0, $prepayment = true, $imposedPay)
   {
     $EXTRA_API_KEY = Option::get('belyaev.extra', 'belyaev_extra_api_key_extrapost');
     $EXTRA_URI = Option::get('belyaev.extra', 'belyaev_extra_url_to_extrapost');
@@ -93,7 +198,8 @@ class Assistant
     $agent = new HttpClient();
     $agent->setHeader('Content-Type', 'application/json', true);
     $agent->setHeader('Authorization', "Basic ".$EXTRA_API_KEY, true);
-    $responseRate = $agent->get("{$EXTRA_URI}rates?from={$DEFAULT_INDEX}&to={$clientPostalCode}&weight={$WEIGHT}");
+    $setImposed = ($imposedPay > 0)? "&value={$imposedPay}" : "";
+    $responseRate = $agent->get("{$EXTRA_URI}rates?from={$DEFAULT_INDEX}&to={$clientPostalCode}&weight={$WEIGHT}{$setImposed}");
     $getHomePoint = $agent->get("{$EXTRA_URI}geo/ops/{$clientPostalCode}/coords");
     $getHomePoint = json_decode($getHomePoint);
     // Некий эксепшн если вылезла ошибка на стороне Extrapost

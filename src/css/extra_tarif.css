@@ -2,7 +2,8 @@
   display: table;
   width:100% !important;
   text-align: center;
-   border-collapse: collapse;
+  border-collapse: collapse;
+  font-size: 12px;
 }
 
 #extraPostTarifSelector.table tr {
